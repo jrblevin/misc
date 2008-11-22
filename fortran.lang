@@ -40,7 +40,9 @@ comment start "!"
 # Real constants
 number = '[+-]?\<([[:digit:]]*\.)?[[:digit:]]*([eEdDqQ][+-]?[[:digit:]]+)?(_[[:digit:][:alpha:]]+)?\>'
 
-# Hexadecimal constants
+# Binary, octal, and hexadecimal constants
+number = 'b\'\<[01]+\>\''
+number = 'o\'\<[0-7]+\>\''
 number = 'z\'\<[A-Fa-f0-9]+\>\''
 
 # fortran strings have no \ escape char
