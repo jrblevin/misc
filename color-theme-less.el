@@ -57,3 +57,5 @@ Inspired by color-theme-late-night and the Less is More theme for vim."
        (variable-pitch ((t (nil))))
        (widget-button-face ((t (:bold t :foreground "#888"))))
        (widget-field-face ((t (:bold t :foreground "#999"))))))))
+
+(provide 'color-theme-less)
