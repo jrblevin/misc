@@ -37,7 +37,7 @@ Based on the Tango color palette."
      (font-lock-doc-string-face ((t (:foreground "#77507b")))) ; plum
      (font-lock-string-face ((t (:foreground "#77507b")))) ; plum
      (font-lock-keyword-face ((t (:foreground "#729fcf")))) ; light sky blue
-     (font-lock-builtin-face ((t (:foreground "#c17d11")))) ; chocolate
+     (font-lock-builtin-face ((t (:foreground "#855c1b")))) ; med-dark chocolate
      (font-lock-function-name-face ((t (:foreground "#c4a000")))) ; dark butter
      (font-lock-variable-name-face ((t (nil))))
      (font-lock-preprocessor-face ((t (:foreground "#888a85")))) ; aluminum
