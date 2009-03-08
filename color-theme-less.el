@@ -17,6 +17,8 @@
 ;; Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 ;; MA 02111-1307 USA
 
+(require 'color-theme)
+
 (defun color-theme-less ()
   "A minimalistic color scheme by Jason Blevins, created 2008-10-07.
 Inspired by color-theme-late-night and the Less is More theme for vim."
