@@ -83,7 +83,7 @@ Based on the Tango color palette."
      (font-latex-math-face ((t (:foreground "#855c1b")))) ; med-dark chocolate
      (font-latex-string-face ((t (:foreground "#77507b")))) ; plum
      (font-latex-warning-face ((t (:foreground "#cc0000")))) ; dark scarlet red
-     (font-latexslide-title-face ((t (:foreground "#c4a000")))) ; dark butter
+     (font-latex-slide-title-face ((t (:foreground "#c4a000")))) ; dark butter
      )))
 
 (provide 'color-theme-subdued)
