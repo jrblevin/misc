@@ -72,14 +72,9 @@ Based on the Tango color palette."
      (info-xref-visited ((t (:foreground "#ad7fa8")))) ; light plum
 
      ;;; AUCTeX
-     (font-latex-sectioning-5-face ((t (:foreground "#c4a000")))) ; dark butter
-     (font-latex-sectioning-4-face ((t (:foreground "#c4a000"))))
-     (font-latex-sectioning-3-face ((t (:foreground "#c4a000"))))
-     (font-latex-sectioning-2-face ((t (:foreground "#c4a000"))))
-     (font-latex-sectioning-1-face ((t (:foreground "#c4a000"))))
-     (font-latex-sectioning-0-face ((t (:foreground "#c4a000"))))
-     (font-latex-bold-face ((t (:foreground "#4e9a06")))) ; dark chameleon
-     (font-latex-italic-face ((t (:foreground "#4e9a06")))) ; dark chameleon
+     (font-latex-sectioning-5-face ((t (:foreground "#c4a000" :bold t)))) ; dark butter
+     (font-latex-bold-face ((t (:foreground "#4e9a06" :bold t)))) ; dark chameleon
+     (font-latex-italic-face ((t (:foreground "#4e9a06" :italic t)))) ; dark chameleon
      (font-latex-math-face ((t (:foreground "#855c1b")))) ; med-dark chocolate
      (font-latex-string-face ((t (:foreground "#77507b")))) ; plum
      (font-latex-warning-face ((t (:foreground "#cc0000")))) ; dark scarlet red

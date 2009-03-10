@@ -83,14 +83,9 @@ available at <http://daringfireball.net/projects/bbcolors/schemes/>."
      (info-visited ((t (:foreground "#9e95c7"))))
 
      ;; AUCTeX
-     (font-latex-sectioning-5-face ((t (:foreground "#96a6c8"))))
-     (font-latex-sectioning-4-face ((t (:foreground "#96a6c8"))))
-     (font-latex-sectioning-3-face ((t (:foreground "#96a6c8"))))
-     (font-latex-sectioning-2-face ((t (:foreground "#96a6c8"))))
-     (font-latex-sectioning-1-face ((t (:foreground "#96a6c8"))))
-     (font-latex-sectioning-0-face ((t (:foreground "#96a6c8"))))
-     (font-latex-bold-face ((t (:foreground "#95a99f"))))
-     (font-latex-italic-face ((t (:foreground "#95a99f"))))
+     (font-latex-sectioning-5-face ((t (:foreground "#96a6c8" :bold t))))
+     (font-latex-bold-face ((t (:foreground "#95a99f" :bold t))))
+     (font-latex-italic-face ((t (:foreground "#95a99f" :italic t))))
      (font-latex-math-face ((t (:foreground "#73c936"))))
      (font-latex-string-face ((t (:foreground "#73c936"))))
      (font-latex-warning-face ((t (:foreground "#f43841"))))
