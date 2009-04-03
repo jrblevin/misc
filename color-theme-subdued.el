@@ -33,8 +33,8 @@ Based on the Tango color palette."
 
      ;;; Standard font lock faces
      (default ((t (nil))))
-     (font-lock-comment-face ((t (:foreground "#555753")))) ; dark aluminum
-     (font-lock-comment-delimiter-face ((t (:foreground "#555753")))) ; dark aluminum
+     (font-lock-comment-face ((t (:foreground "#61635e")))) ; dark aluminum
+     (font-lock-comment-delimiter-face ((t (:foreground "#61635e")))) ; dark aluminum
      (font-lock-doc-face ((t (:foreground "#77507b")))) ; plum
      (font-lock-doc-string-face ((t (:foreground "#77507b")))) ; plum
      (font-lock-string-face ((t (:foreground "#77507b")))) ; plum
