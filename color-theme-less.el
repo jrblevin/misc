@@ -1,6 +1,6 @@
 ;;; color-theme-less.el --- A minimalistic color theme for Emacs
 ;;
-;; Copyright (C) 2008 Jason R. Blevins <jrblevin@sdf.lonestar.org>
+;; Copyright (C) 2008-2009 Jason R. Blevins <jrblevin@sdf.lonestar.org>
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -39,6 +39,7 @@ Inspired by color-theme-late-night and the Less is More theme for vim."
 	(top-toolbar-shadow-color . "#111"))
        (default ((t (nil))))
        (font-lock-comment-face ((t (:bold t :foreground "dim gray"))))
+       (font-lock-comment-delimiter-face ((t (:bold t :foreground "dim gray"))))
        (font-lock-function-name-face ((t (:foreground "gray90"))))
        (font-lock-variable-name-face ((t (:foreground "gray90"))))
        (font-lock-constant-face ((t (:foreground "gray90"))))
