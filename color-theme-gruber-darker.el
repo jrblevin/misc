@@ -32,7 +32,7 @@ A darker variant of the Gruber Dark theme for BBEdit
 by John Gruber."
   (interactive)
   (color-theme-install
-   '(color-theme-gruber-dark
+   '(color-theme-gruber-darker
      ((foreground-color . "#e4e4ef")
       (background-color . "#181818")
       (background-mode . dark)
