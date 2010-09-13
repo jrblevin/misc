@@ -1,21 +1,25 @@
-;;; color-theme-less.el --- A minimalistic color theme for Emacs
+;; color-theme-less.el --- A minimalistic color theme for Emacs
+;; Revision 2
 ;;
 ;; Copyright (C) 2008-2010 Jason R. Blevins <jrblevin@sdf.org>
 ;;
-;; This program is free software; you can redistribute it and/or
-;; modify it under the terms of the GNU General Public License as
-;; published by the Free Software Foundation; either version 3 of
-;; the License, or (at your option) any later version.
+;; Permission is hereby granted, free of charge, to any person obtaining a copy
+;; of this software and associated documentation files (the "Software"), to deal
+;; in the Software without restriction, including without limitation the rights
+;; to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+;; copies of the Software, and to permit persons to whom the Software is
+;; furnished to do so, subject to the following conditions:
 ;;
-;; This program is distributed in the hope that it will be
-;; useful, but WITHOUT ANY WARRANTY; without even the implied
-;; warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-;; PURPOSE.  See the GNU General Public License for more details.
+;; The above copyright notice and this permission notice shall be included in
+;; all copies or substantial portions of the Software.
 ;;
-;; You should have received a copy of the GNU General Public
-;; License along with this program; if not, write to the Free
-;; Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-;; MA 02111-1307 USA
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+;; IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+;; FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+;; AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+;; LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+;; THE SOFTWARE.
 
 (require 'color-theme)
 
@@ -37,7 +41,13 @@ Inspired by color-theme-late-night and the Less is More theme for vim."
 	(cursor-color	. "yellow")
 	(foreground-color . "gray70")
 	(top-toolbar-shadow-color . "#111"))
+
+       ;; Standard font lock faces
        (default ((t (nil))))
+       (bold ((t (:bold t))))
+       (italic ((t (:bold t))))
+       (underline ((t (:bold t))))
+       (variable-pitch ((t (nil))))
        (font-lock-comment-face ((t (:bold t :foreground "dim gray"))))
        (font-lock-comment-delimiter-face ((t (:bold t :foreground "dim gray"))))
        (font-lock-function-name-face ((t (:foreground "gray90"))))
@@ -52,18 +62,10 @@ Inspired by color-theme-late-night and the Less is More theme for vim."
        (font-lock-builtin-face ((t (:bold t :foreground "white"))))
        (font-lock-keyword-face ((t (:bold t :foreground "white"))))
        (font-lock-warning-face ((t (:bold t :foreground "red"))))
-       (bold ((t (:bold t))))
-       (button ((t (:bold t))))
-       (custom-button-face ((t (:bold t :foreground "#999"))))
+
+       ;; Emacs Interface
        (fringe ((t (:background "#111" :foreground "#444"))))
        (header-line ((t (:background "#333" :foreground "#000"))))
-       (highlight ((t (:background "#1f1f1f" :foreground nil))))
-       (highlight-current-line-face ((t (:background "#1f1f1f" :foreground nil))))
-       (hl-line ((t (:background "#1f1f1f" :foreground nil))))
-       (holiday-face ((t (:background "#000" :foreground "#777"))))
-       (isearch ((t (:foreground "black" :background "red"))))
-       (isearch-lazy-highlight-face ((t (:foreground "red"))))
-       (italic ((t (:bold t))))
        (menu ((t (:background "#111" :foreground "#444"))))
        (minibuffer-prompt ((t (:foreground "white"))))
        (modeline ((t (:background "gray20" :foreground "white"))))
@@ -73,13 +75,30 @@ Inspired by color-theme-late-night and the Less is More theme for vim."
        (modeline-mousable-minor-mode ((t (:background "black" :foreground "white"))))
        (region ((t (:background "light gray" :foreground "black"))))
        (secondary-selection ((t (:background "Aquamarine" :foreground "SlateBlue"))))
-       (show-paren-match-face ((t (:foreground "black" :background "light gray"))))
-       (show-paren-mismatch-face ((t (:foreground "black" :background "red"))))
        (tool-bar ((t (:background "#111" :foreground "#777"))))
        (tooltip ((t (:background "#333" :foreground "#777"))))
-       (underline ((t (:bold t))))
-       (variable-pitch ((t (nil))))
        (widget-button-face ((t (:bold t :foreground "#888"))))
-       (widget-field-face ((t (:bold t :foreground "#999"))))))))
+       (widget-field-face ((t (:bold t :foreground "#999"))))
+
+       ;; Search
+       (isearch ((t (:foreground "black" :background "red"))))
+       (isearch-lazy-highlight-face ((t (:foreground "red"))))
+
+       ;; Parenthesis matching
+       (show-paren-match-face ((t (:foreground "black" :background "light gray"))))
+       (show-paren-mismatch-face ((t (:foreground "black" :background "red"))))
+
+       ;; Line highlighting
+       (highlight ((t (:background "#1f1f1f" :foreground nil))))
+       (highlight-current-line-face ((t (:background "#1f1f1f" :foreground nil))))
+       (hl-line ((t (:background "#1f1f1f" :foreground nil))))
+
+       ;; Buttons
+       (button ((t (:bold t))))
+       (custom-button-face ((t (:bold t :foreground "#999"))))
+
+       ;; Calendar
+       (holiday-face ((t (:background "#000" :foreground "#777"))))
+       ))))
 
 (provide 'color-theme-less)
