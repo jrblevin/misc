@@ -1,6 +1,6 @@
 ;;; color-theme-less.el --- A minimalistic color theme for Emacs
 ;;
-;; Copyright (C) 2008-2009 Jason R. Blevins <jrblevin@sdf.lonestar.org>
+;; Copyright (C) 2008-2010 Jason R. Blevins <jrblevin@sdf.org>
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -57,7 +57,9 @@ Inspired by color-theme-late-night and the Less is More theme for vim."
        (custom-button-face ((t (:bold t :foreground "#999"))))
        (fringe ((t (:background "#111" :foreground "#444"))))
        (header-line ((t (:background "#333" :foreground "#000"))))
-       (highlight ((t (:background "dark slate blue" :foreground "light blue"))))
+       (highlight ((t (:background "#1f1f1f" :foreground nil))))
+       (highlight-current-line-face ((t (:background "#1f1f1f" :foreground nil))))
+       (hl-line ((t (:background "#1f1f1f" :foreground nil))))
        (holiday-face ((t (:background "#000" :foreground "#777"))))
        (isearch ((t (:foreground "black" :background "red"))))
        (isearch-lazy-highlight-face ((t (:foreground "red"))))
