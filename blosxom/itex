@@ -1,0 +1,180 @@
+# Blosxom Plugin: itex                                        -*-cperl-*-
+# Author(s): Jason Blevins, Jacques Distler
+# Version: 2008-01-12
+# Docs: Included below: type "perldoc itex", or scroll down
+# Plugin Homepage: http://jblevins.org/projects/blosxom/itex
+# Blosxom Home/Docs/Licensing: http://blosxom.sourceforge.net
+
+package itex;
+
+use File::Temp qw(tempfile);
+
+# ----- Mandatory configuration -----
+
+# Set the path to your itex2MML binary
+my $itex2mml = "/usr/local/bin/itex2MML";
+
+# ----- Optional configuration -----
+
+# Set $use_meta to 1 to use Blosxom's meta plug-in to determine which posts
+# itex should process, using a "meta-math: itex" header.  If it's set to 0
+# (the default), itex will process all entries.
+my $use_meta = 0;
+
+# Set to 1 to enable numbering of \[..\] style equations.  Set to 0 to
+# disable this.
+my $num_equations = 1;
+
+# ----- End configuration -----
+
+sub start { 1; }
+sub story {
+    my($pkg, $path, $filename, $story_ref, $title_ref, $body_ref) = @_;
+
+    if ( (!$use_meta) or
+	 (defined($meta::math) and ($meta::math =~ /^\s*itex\s*$/i))
+       ){
+	$_ = $$body_ref;
+	$_=~ s/\r//g;
+	$_ = number_equations($_) if $num_equations;
+	my ($Reader, $outfile) = tempfile( UNLINK => 1 );
+	my ($Writer, $infile) = tempfile( UNLINK => 1 );
+	print $Writer "$_";
+	system("$itex2mml < $infile > $outfile");
+	my @out = <$Reader>;
+	close $Reader;
+	close $Writer;
+	eval { unlink ($infile, $outfile); };
+	$$body_ref = join('', @out);
+     }
+     1;
+}
+
+sub end {
+  1;
+}
+
+sub number_equations {
+  $_ = shift;
+
+  my $prefix = "eq";
+  my $cls = "numberedEq";
+
+  my %eqnumber;
+  my $eqno=1;
+
+  # add equation numbers to \[...\]
+  #  - introduce a wrapper-<div> and a <span> with the equation number
+  while (s/\\\[(.*?)\\\]/\n\n<div class=\"$cls\"><span>\($eqno\)<\/span>\$\$$1\$\$<\/div>\n\n/s) {
+    $eqno++;
+  }
+
+  # assemble equation labels into a hash
+  # - remove the \label{} command, collapse surrounding whitespace
+  # - add an ID to the wrapper-<div>. prefix it to give a fighting chance
+  #   for the ID to be unique
+  # - hash key is the equation label, value is the equation number
+  while (s/<div class=\"$cls\"><span>\((\d+)\)<\/span>\$\$((?:[^\$]|\\\$)*)\s*\\label{(\w*)}\s*((?:[^\$]|\\\$)*)\$\$<\/div>/<div class=\"$cls\" id=\"$prefix:$3\"><span>\($1\)<\/span>\$\$$2$4\$\$<\/div>/s) {
+    $eqnumber{"$3"} = $1;
+  }
+
+  # add cross-references
+  # - they can be either (eq:foo) or \eqref{foo}
+  s/\(eq:(\w+)\)/\(<a href=\"#$prefix:$1\">$eqnumber{"$1"}<\/a>\)/g;
+  s/\\eqref\{(\w+)\}/\(<a href=\'#$prefix:$1\'>$eqnumber{"$1"}<\/a>\)/g;
+
+  return $_;
+}
+
+__END__
+
+=head1 NAME
+
+Blosxom Plug-in: itex
+
+=head1 SYNOPSIS
+
+Processes embedded itex (LaTeX-based) expressions in story files and converts
+them to MathML.
+
+=head1 VERSION
+
+2008-01-12
+
+=head1 AUTHORS
+
+Jason Blevins <jrblevin@sdf.lonestar.org>,
+itex Blosxom plugin
+
+Jacques Distler <distler@golem.ph.utexas.edu>,
+itex2MML and itex2MML Movable Type Plugin
+
+Paul Gartside <gartside@math.pitt.edu>,
+itex2MML
+
+=head1 INSTALLATION AND CONFIGURATION
+
+The itex plugin requires that you compile the itex2MML binary, place the
+plugin in your plugins directory, and set B<$itex2mml> to point to the
+binary.
+
+You can obtain the itex2MML source code at
+http://golem.ph.utexas.edu/~distler/blog/itex2MML.html.  Simply extract the
+source, change to the itex-src directory, and run make.
+
+If you only want itex2MML to process certain entries, then install the meta
+plugin, set B<$use_meta> to 1 and include "meta-math: itex" in the entry
+header.  Otherwise, set B<$use_meta> to 0. To enable numbering of \[..\]
+style equations, set B<$num_equations> to 1.  Otherwise, set it to zero.
+
+If you plan to use itex along with Markdown (highly recommended), you will
+need to make sure itex is called before Markdown.  You can ensure this by
+using Blosxom's plugin load order mechanism, by prepending numbers to
+the itex and Markdown plugin filnames such that Markdown runs first
+(e.g., `50itex` and `51Markdown`).
+
+=head1 SEE ALSO
+
+Plugin homepage:
+http://jblevins.org/projects/blosxom/itex
+
+Blosxom Home/Docs/Licensing:
+http://blosxom.sourceforge.net
+
+Blosxom Plugin Docs:
+http://blosxom.sf.net/documentation/developers/plugins.html
+
+itex2MML:
+http://golem.ph.utexas.edu/~distler/blog/itex2MML.html
+
+=head1 BUGS
+
+Send bug reports and comments to Jason Blevins <jrblevin@sdf.lonestar.org>.
+
+
+=head1 VERSION HISTORY
+
+2008-01-12: Corrected load order documentation. Added link to homepage.
+2007-11-22: Removed parbreak code.
+2007-10-23: Added a note about plugin priority to the documentation.
+2007-10-17: Initial revision.
+
+
+=head1 LICENSE
+
+Copyright (C) 2007-2008 Jason Blevins
+
+Copyright (C) 2003-2007 Jacques Distler
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
