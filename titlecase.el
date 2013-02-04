@@ -46,6 +46,7 @@
 (defconst titlecase-buffer "*titlecase output*")
 
 (defun titlecase-string (str)
+  "Convert string STR to title case and return the resulting string."
   (let ((buffer (generate-new-buffer titlecase-buffer)))
     (with-current-buffer buffer
       (insert str)
@@ -68,7 +69,7 @@
       (replace-match (titlecase-string (buffer-substring begin end))))))
 
 (defun titlecase-dwim ()
-  "Convert the region or line to title case.
+  "Convert the region or current line to title case.
 If Transient Mark Mode is on and there is an active region, convert
 the region to title case.  Otherwise, work on the current line."
   (interactive)
@@ -77,3 +78,5 @@ the region to title case.  Otherwise, work on the current line."
     (titlecase-region (point-at-bol) (point-at-eol))))
 
 (provide 'titlecase)
+
+;;; titlecase.el ends here
