@@ -73,7 +73,7 @@
 If Transient Mark Mode is on and there is an active region, convert
 the region to title case.  Otherwise, work on the current line."
   (interactive)
-  (if (and transient-mark-mode (mark-active))
+  (if (and transient-mark-mode mark-active)
       (titlecase-region (region-beginning) (region-end))
     (titlecase-region (point-at-bol) (point-at-eol))))
 
