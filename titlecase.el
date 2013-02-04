@@ -74,6 +74,6 @@ the region to title case.  Otherwise, work on the current line."
   (interactive)
   (if (and transient-mark-mode (mark-active))
       (titlecase-region (region-beginning) (region-end))
-    (titlecase-region (beginning-of-line) (end-of-line))))
+    (titlecase-region (point-at-bol) (point-at-eol))))
 
 (provide 'titlecase)
