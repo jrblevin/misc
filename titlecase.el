@@ -36,12 +36,13 @@
 
 ;; Currently, this is simply a wrapper for the `titlecase` Perl script
 ;; written by John Gruber and Aristotle Pagaltzis.  This script can be
-;; found at <https://github.com/ap/titlecase>.  You must change the
-;; value of `titlecase-command' to be the full path to this script.
+;; found at <https://github.com/ap/titlecase>.  If `titlecase` is not
+;; in your path, you must change the value of `titlecase-command'
+;; accordingly.
 
 ;;; Code:
 
-(defvar titlecase-command "/usr/local/bin/titlecase")
+(defvar titlecase-command "titlecase")
 
 (defconst titlecase-buffer "*titlecase output*")
 
