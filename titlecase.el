@@ -26,7 +26,7 @@
 ;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;; POSSIBILITY OF SUCH DAMAGE.
 
-;;; Version: 1.0
+;;; Version: 1.1
 ;;; Author: Jason R. Blevins <jrblevin@sdf.org>
 ;;; Keywords: title case, capitalization, writing.
 
@@ -48,26 +48,18 @@
 
 (defun titlecase-string (str)
   "Convert string STR to title case and return the resulting string."
-  (let ((buffer (generate-new-buffer titlecase-buffer)))
-    (with-current-buffer buffer
-      (insert str)
-      (goto-char (point-min))
-      (call-process-region (point-min) (point-max) titlecase-command t t nil)
-      (prog1
-          ;; Skip trailing newline omitted by titlecase
-          (buffer-substring (point-min) (- (point-max) 1))
-        (kill-buffer buffer)))))
+  (with-temp-buffer
+    (insert str)
+    (call-process-region (point-min) (point-max) titlecase-command t t nil)
+    ;; Skip trailing newline omitted by titlecase
+    (buffer-substring (point-min) (1- (point-max)))))
 
 (defun titlecase-region (begin end)
   "Convert text in region from BEGIN to END to title case."
-  (interactive "r")
-  (save-excursion
-    ;; An alternative to `replace-match' is to delete and insert the
-    ;; text in two steps, but this results in two steps in the undo list:
-    ;; (insert (titlecase-string (delete-and-extract-region begin end)))
-    (save-match-data
-      (set-match-data (list begin end))
-      (replace-match (titlecase-string (buffer-substring begin end))))))
+  (interactive "*r")
+  (let ((pt (point)))
+    (insert (titlecase-string (delete-and-extract-region begin end)))
+    (goto-char pt)))
 
 (defun titlecase-dwim ()
   "Convert the region or current line to title case.
