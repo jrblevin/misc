@@ -68,6 +68,7 @@ Based on the Tango color palette."
      ;; Line highlighting
      (highlight ((t (:background "#1f1f1f" :foreground nil))))
      (highlight-current-line-face ((t (:background "#1f1f1f" :foreground nil))))
+     (hl-line ((t (:background "#1f1f1f" :foreground nil))))
 
      ;; Calendar
      (holiday-face ((t (:foreground "#cc0000")))) ; dark scarlet red
